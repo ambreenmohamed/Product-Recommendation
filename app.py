@@ -71,9 +71,33 @@ def hybrid_recommendation(product_id, cosine_sim, df, top_n=10):
     recommended_products = df.iloc[content_recommendations_idx][['product_id', 'product_name', 'rating']]
     return recommended_products
 
-# Streamlit app
+# Streamlit app with custom styling
 def main():
-    st.title("Product Recommendation System")
+    # Custom CSS for styling
+    st.markdown("""
+        <style>
+        body {
+            background-color: #f6f1f1;
+        }
+        .title {
+            color: #42153c;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .stButton > button {
+            background-color: #42153c;
+            color: white;
+            font-weight: bold;
+        }
+        .stSelectbox select {
+            background-color: #e0cfe9;
+            border: 1px solid #42153c;
+            color: #42153c;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+    st.title("Product Recommendation System", anchor="product_recommendation_system")
     df = load_data()
     cosine_sim = compute_similarity(df)
 
